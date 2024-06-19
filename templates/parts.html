@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Parts</h2>
+<a href="{{ url_for('add_part') }}">Add New Part</a>
+<ul>
+    {% for part in parts %}
+    <li>{{ part.name }} - {{ part.part_number }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
