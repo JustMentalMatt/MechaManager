@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Home</h1>
+<p>Car Mileage: <input type="number" id="mileage" name="mileage"></p>
+<h2>Parts Needing Maintenance</h2>
+<ul>
+    {% for part in parts %}
+    {% if part.maintenances|length == 0 or (datetime.utcnow() - part.maintenances[-1].date).days > part.recommended_interval_time * 30 or car_mileage - part.maintenances[-1].mileage > part.recommended_interval_mileage %}
+    <li>{{ part.name }} (Part Number: {{ part.part_number }})</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endblock %}

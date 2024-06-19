@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Parts</h1>
+<ul>
+    {% for part in parts %}
+    <li>{{ part.name }} (Part Number: {{ part.part_number }}, Price: {{ part.price }})</li>
+    {% endfor %}
+</ul>
+<h2>Add New Part</h2>
+<form action="{{ url_for('parts') }}" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name() }}
+    </p>
+    <p>
+        {{ form.part_number.label }}<br>
+        {{ form.part_number() }}
+    </p>
+    <p>
+        {{ form.photo_url.label }}<br>
+        {{ form.photo_url() }}
+    </p>
+    <p>
+        {{ form.price.label }}<br>
+        {{ form.price() }}
+    </p>
+    <p>
+        {{ form.purchase_link.label }}<br>
+        {{ form.purchase_link() }}
+    </p>
+    <p>
+        {{ form.recommended_interval_time.label }}<br>
+        {{ form.recommended_interval_time() }}
+    </p>
+    <p>
+        {{ form.recommended_interval_mileage.label }}<br>
+        {{ form.recommended_interval_mileage() }}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+{% endblock %}
