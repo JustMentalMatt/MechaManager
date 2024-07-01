@@ -4,7 +4,9 @@
 <h1>Parts</h1>
 <ul>
     {% for part in parts %}
-    <li>{{ part.name }} (Part Number: {{ part.part_number }}, Price: {{ part.price }})</li>
+    <li>
+        <a href="{{ url_for('part_detail', part_id=part.id) }}">{{ part.name }}</a> (Part Number: {{ part.part_number }}, Price: {{ part.price }})
+    </li>
     {% endfor %}
 </ul>
 <h2>Add New Part</h2>
@@ -37,6 +39,10 @@
     <p>
         {{ form.recommended_interval_mileage.label }}<br>
         {{ form.recommended_interval_mileage() }}
+    </p>
+    <p>
+        {{ form.additional_details.label }}<br>
+        {{ form.additional_details() }}
     </p>
     <p>
         {{ form.submit() }}

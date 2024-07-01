@@ -4,7 +4,9 @@
 <h1>Maintenance</h1>
 <ul>
     {% for maintenance in maintenances %}
-    <li>{{ maintenance.date }}: Part {{ maintenance.part_id }} at {{ maintenance.mileage }} miles</li>
+    <li>
+        <a href="{{ url_for('maintenance_detail', maintenance_id=maintenance.id) }}">{{ maintenance.date }}: Part {{ maintenance.part_id }} at {{ maintenance.mileage }} miles</a>
+    </li>
     {% endfor %}
 </ul>
 <h2>Add New Maintenance</h2>
@@ -21,6 +23,10 @@
     <p>
         {{ form.mileage.label }}<br>
         {{ form.mileage() }}
+    </p>
+    <p>
+        {{ form.additional_details.label }}<br>
+        {{ form.additional_details() }}
     </p>
     <p>
         {{ form.submit() }}

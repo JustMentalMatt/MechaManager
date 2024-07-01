@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Maintenance Record</h1>
+<p><strong>Date:</strong> {{ maintenance.date }}</p>
+<p><strong>Part ID:</strong> {{ maintenance.part_id }}</p>
+<p><strong>Mileage:</strong> {{ maintenance.mileage }} miles</p>
+<p><strong>Additional Details:</strong> {{ maintenance.additional_details }}</p>
+{% endblock %}

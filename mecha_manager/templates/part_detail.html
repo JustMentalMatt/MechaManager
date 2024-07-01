@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ part.name }}</h1>
+<p><strong>Part Number:</strong> {{ part.part_number }}</p>
+<p><strong>Price:</strong> ${{ part.price }}</p>
+<p><strong>Purchase Link:</strong> <a href="{{ part.purchase_link }}">{{ part.purchase_link }}</a></p>
+{% if part.photo_url %}
+<p><img src="{{ part.photo_url }}" alt="{{ part.name }}" style="max-width:100%;"></p>
+{% endif %}
+<p><strong>Recommended Interval:</strong> {{ part.recommended_interval_time }} months or {{ part.recommended_interval_mileage }} miles</p>
+<p><strong>Additional Details:</strong> {{ part.additional_details }}</p>
+{% endblock %}

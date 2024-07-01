@@ -2,12 +2,21 @@
 
 {% block content %}
 <h1>Home</h1>
-<p>Car Mileage: <input type="number" id="mileage" name="mileage"></p>
+<p>Current Mileage: {{ current_mileage.mileage if current_mileage else 'Not set' }}</p>
+<form action="{{ url_for('update_mileage') }}" method="post">
+    {{ mileage_form.hidden_tag() }}
+    {{ mileage_form.mileage.label }}<br>
+    {{ mileage_form.mileage() }}<br>
+    {{ mileage_form.submit() }}
+</form>
 <h2>Parts Needing Maintenance</h2>
 <ul>
     {% for part in parts %}
-    {% if part.maintenances|length == 0 or (datetime.utcnow() - part.maintenances[-1].date).days > part.recommended_interval_time * 30 or car_mileage - part.maintenances[-1].mileage > part.recommended_interval_mileage %}
-    <li>{{ part.name }} (Part Number: {{ part.part_number }})</li>
+    {% set last_maintenance = part.maintenances[-1] if part.maintenances else None %}
+    {% if not last_maintenance or (datetime.utcnow() - last_maintenance.date).days > part.recommended_interval_time * 30 or (current_mileage.mileage - last_maintenance.mileage) > part.recommended_interval_mileage %}
+    <li>
+        <a href="{{ url_for('part_detail', part_id=part.id) }}">{{ part.name }}</a> (Part Number: {{ part.part_number }})
+    </li>
     {% endif %}
     {% endfor %}
 </ul>
