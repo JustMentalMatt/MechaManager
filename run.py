@@ -1,4 +1,4 @@
-from mecha_manager.app import create_app
+from mecha_manager import create_app
 
 app = create_app()
 
