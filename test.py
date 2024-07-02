@@ -41,6 +41,13 @@
     #     return f'About page: {username}'
     
 # Ensure db is initialized only once
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
+
+from werkzeug.security import check_password_hash, generate_password_hash
+
+password = generate_password_hash('testuser', method='scrypt')
+print(password)
+
+print(check_password_hash('scrypt:32768:8:1$L32vhtHIIWmnnavq$11855a358893ac38dcc58524cf048ff2d5028ed31fbfd6195f0f0099d62a00c76e8e9545e79a7e401fea9150ec3eae4da72a5e7ad4b9579af2610b5ab9d98cfe', 'testuser'))

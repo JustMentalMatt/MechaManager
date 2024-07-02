@@ -1,11 +1,29 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Home</title>
+    <style>
+        .success {
+            color: green;
+        }
+        .danger {
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome, {{ name }}!</h1>
-    <a href="{{ url_for('auth.logout') }}">Logout</a>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
